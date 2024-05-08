@@ -1,1 +1,5 @@
 pytest==8.2.0
+selene==2.0.0rc9
+selenium==4.20.0
+python-dotenv==1.0.1
+allure-pytest==2.13.5
