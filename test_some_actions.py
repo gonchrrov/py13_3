@@ -10,6 +10,7 @@ login = os.getenv("OWN_LOGIN")
 password = os.getenv("OWN_PASS")
 google = os.getenv('GOOGLE')
 fail_google_request = os.getenv('FAIL_SEARCH')
+selene_request = os.getenv('SELENE_REQUEST')
 
 
 def test_account_login():
@@ -33,7 +34,7 @@ def test_account_login():
 
 def test_google_search():
     browser.open(google)
-    s('[name=q]').type('yashaka/selene').press_enter()
+    s('[name=q]').type(selene_request).press_enter()
     ss('.LC20lb')[0].should(have.text('yashaka/selene: User-oriented Web UI browser tests in')).click()
     s('.my-3').should(have.text('User-oriented Web UI browser tests in Python'))
 
@@ -41,5 +42,4 @@ def test_google_search():
 def test_fail_google_search():
     browser.open(google)
     s('#APjFqb').should(be.clickable).type(fail_google_request).press_enter()
-    browser.element('#search-result').should(have.no.text(fail_google_request))
-
+    s('.card-section').should(have.no.text(fail_google_request))
